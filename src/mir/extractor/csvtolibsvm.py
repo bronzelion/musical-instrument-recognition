@@ -10,7 +10,7 @@ def csvtolibsvm(instrument_label):
 	ifile = os.path.join(BASE_DIR, 'testinput.csv')
 	out= os.path.join(BASE_DIR, 'testinput.libsvm')
 	instru = instrument_label
-	print "i'm in csvtolibsvm"
+
 	fin = open(ifile,'r')
 	fout =open(out,'w+')
 	line = fin.readline()
