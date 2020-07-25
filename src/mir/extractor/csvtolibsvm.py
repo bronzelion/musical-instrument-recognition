@@ -2,9 +2,13 @@
 
 #expecting label as the last column
 import sys
+import os
+
+from ..settings import BASE_DIR
+
 def csvtolibsvm(instrument_label):
-	ifile = '/home/anvith/django-workspace/mir/mir/extractor/testinput.csv'
-	out= '/home/anvith/django-workspace/mir/mir/extractor/testinput.libsvm'
+	ifile = os.path.join(BASE_DIR, 'testinput.csv')
+	out= os.path.join(BASE_DIR, 'testinput.libsvm')
 	instru = instrument_label
 	print "i'm in csvtolibsvm"
 	fin = open(ifile,'r')

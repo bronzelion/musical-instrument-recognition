@@ -6,12 +6,7 @@ OS = $(shell uname)
 all: svm-train svm-predict svm-scale
 
 lib: svm.o
-	if [ "$(OS)" = "Darwin" ]; then \
-		SHARED_LIB_FLAG="-dynamiclib -Wl,-install_name,libsvm.so.$(SHVER)"; \
-	else \
-		SHARED_LIB_FLAG="-shared -Wl,-soname,libsvm.so.$(SHVER)"; \
-	fi; \
-	$(CXX) $${SHARED_LIB_FLAG} svm.o -o libsvm.so.$(SHVER)
+	$(CXX) -shared -Wl,-soname,libsvm.so.$(SHVER) svm.o -o libsvm.so.$(SHVER)
 
 svm-predict: svm-predict.c svm.o
 	$(CXX) $(CFLAGS) svm-predict.c svm.o -o svm-predict -lm

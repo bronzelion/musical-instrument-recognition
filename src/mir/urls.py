@@ -11,7 +11,7 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
-	 url(r'^upload/$', 'mir.extractor.views.home', name='/imageupload'),
+	url(r'^upload/$', 'mir.extractor.views.home', name='/imageupload'),
 )
 
 urlpatterns += staticfiles_urlpatterns()

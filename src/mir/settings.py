@@ -12,10 +12,11 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 import os
 import sys
 
-BASE_DIR = os.path.dirname(os.path.dirname(__file__)/../third-party-lib)
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 sys.path.insert(0, os.path.join(BASE_DIR))
-sys.path.insert(1,os.path.join(BASE_DIR, 'libsvm/python'))
-sys.path.insert(2,os.path.join(BASE_DIR, 'yaafelib/'))
+sys.path.insert(1, os.path.join(BASE_DIR, 'third-party-lib/libsvm/python'))
+print("BASE_DIR", os.path.join(BASE_DIR, 'third-party-lib/libsvm/python'))
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
@@ -84,6 +85,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+print(STATIC_ROOT)
 
 STATIC_URL = '/static/'
 

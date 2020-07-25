@@ -16,5 +16,3 @@ class Upload(models.Model):
 class UploadForm(ModelForm):
     class Meta:
         model = Upload
-        fields = "__all__" 
-

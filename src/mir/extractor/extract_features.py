@@ -6,6 +6,7 @@ import os
 from svmutil import *
 import itertools
 
+from ..settings import BASE_DIR
 
 def extract_feature(name):
 #def extract_feature():
@@ -22,19 +23,20 @@ def extract_feature(name):
 	df.display()
 	engine = Engine();
 	engine.load(df);
-	directory = '/misc/uploads'
+	directory = 'uploads'
 	#out=sys.argv[2]
 	ins='1'
 	#name = directory+'.csv'
 	#file_list = os.listdir(directory)
 	#f =open(out,'w')
 	print directory
-	f =open('./testinput.csv','w+')
+	f = open('./testinput.csv','w+')
 	afp = AudioFileProcessor()
 	#b=afp.setOutputFormat('csv','output',{'Precision':'8'})
-	names=directory+str(name)
+	names = os.path.join(directory, str(name))
 	print names
-	afp.processFile(engine,names)
+	afp.processFile(engine, os.path.join(BASE_DIR, names))
+
 	feats = engine.readAllOutputs()
 	zipped = zip(feats['flat'],feats['flux'],feats['roll'],feats['sss'])
 	list(zipped)
