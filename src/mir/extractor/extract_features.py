@@ -8,55 +8,60 @@ import itertools
 
 from ..settings import BASE_DIR
 
+
 def extract_feature(name):
-#def extract_feature():
-	#1 -flute 2-guitar 3- violin 4-piano
-	ins='3'
-	fp=FeaturePlan(sample_rate=44100, normalize=None, resample=True)
-	#name='Flute.nonvib.ff.C7Db7.aiff'
-	fp.addFeature('flat:SpectralFlatness FFTLength=0  FFTWindow=Hanning  blockSize=1024  stepSize=512')
-	fp.addFeature('flux:SpectralFlux FFTLength=0  FFTWindow=Hanning  FluxSupport=All  blockSize=1024  stepSize=512')
-	fp.addFeature('roll:SpectralRolloff FFTLength=0  FFTWindow=Hanning  blockSize=1024  stepSize=512')
-	fp.addFeature('sss: SpectralShapeStatistics FFTLength=0  FFTWindow=Hanning  blockSize=1024  stepSize=512')
+    # def extract_feature():
+    # 1 -flute 2-guitar 3- violin 4-piano
+    ins = "3"
+    fp = FeaturePlan(sample_rate=44100, normalize=None, resample=True)
+    # name='Flute.nonvib.ff.C7Db7.aiff'
+    fp.addFeature(
+        "flat:SpectralFlatness FFTLength=0  FFTWindow=Hanning  blockSize=1024  stepSize=512"
+    )
+    fp.addFeature(
+        "flux:SpectralFlux FFTLength=0  FFTWindow=Hanning  FluxSupport=All  blockSize=1024  stepSize=512"
+    )
+    fp.addFeature(
+        "roll:SpectralRolloff FFTLength=0  FFTWindow=Hanning  blockSize=1024  stepSize=512"
+    )
+    fp.addFeature(
+        "sss: SpectralShapeStatistics FFTLength=0  FFTWindow=Hanning  blockSize=1024  stepSize=512"
+    )
 
-	df = fp.getDataFlow()
-	df.display()
-	engine = Engine();
-	engine.load(df);
-	directory = 'uploads'
-	#out=sys.argv[2]
-	ins='1'
-	#name = directory+'.csv'
-	#file_list = os.listdir(directory)
-	#f =open(out,'w')
-	print directory
-	f = open('./testinput.csv','w+')
-	afp = AudioFileProcessor()
-	#b=afp.setOutputFormat('csv','output',{'Precision':'8'})
-	names = os.path.join(directory, str(name))
-	print names
-	afp.processFile(engine, os.path.join(BASE_DIR, names))
+    df = fp.getDataFlow()
+    df.display()
+    engine = Engine()
+    engine.load(df)
+    directory = "uploads"
+    # out=sys.argv[2]
+    ins = "1"
+    # name = directory+'.csv'
+    # file_list = os.listdir(directory)
+    # f =open(out,'w')
+    print directory
+    f = open("./testinput.csv", "w+")
+    afp = AudioFileProcessor()
+    # b=afp.setOutputFormat('csv','output',{'Precision':'8'})
+    names = os.path.join(directory, str(name))
+    print names
+    afp.processFile(engine, os.path.join(BASE_DIR, names))
 
-	feats = engine.readAllOutputs()
-	zipped = zip(feats['flat'],feats['flux'],feats['roll'],feats['sss'])
-	list(zipped)
-	#print zipped
+    feats = engine.readAllOutputs()
+    zipped = zip(feats["flat"], feats["flux"], feats["roll"], feats["sss"])
+    list(zipped)
 
-	for i in zipped:
-		for val,j in enumerate(i):
-			for k in j:
-				f.write(str(k)+',')
+    for i in zipped:
+        for val, j in enumerate(i):
+            for k in j:
+                f.write(str(k) + ",")
 
-		f.write(ins)
-		f.write('\n')
-	
-	f.close()
-	print "hello"
-	return zipped
-#	return 'j'
-	
-	
+        f.write(ins)
+        f.write("\n")
 
-if __name__ == '__main__':
+    f.close()
+
+    return zipped
+
+
+if __name__ == "__main__":
     extract_feature()
-
