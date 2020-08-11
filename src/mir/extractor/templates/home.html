@@ -60,8 +60,13 @@
 	</style>
 </head>
 <body>
-<div style="padding:40px;margin:40px;border:1px solid #ccc">
-    <h1>Musical Instrument Recognition</h1>
+<div style=solid#ccc">
+	<h2 align="center">Musical Instrument Recognition</h2>
+	<p>
+		Please upload an audio recording to detect an Instrument.
+		<br>
+		Supported format : .wav
+	</p>
     <!-- <div id="viz">
 		<canvas id="wavedisplay" width="900" height="400"></canvas>
     </div> -->
@@ -69,12 +74,6 @@
         {% csrf_token %} {{form}} 
         <input type="submit" value="Upload" />
     </form>
-
-    <div id="controls">
-		{% load staticfiles %}
-		<img id="record" src="{% static 'img/rec1.png' %}" onclick="toggleRecording(this);">
-		<a id="save" href="#"><img src="{% static 'img/recog1.jpg' %}"></a>
-    </div>
 </div>
 </body>
 </html>
