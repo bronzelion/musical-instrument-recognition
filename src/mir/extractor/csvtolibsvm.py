@@ -18,16 +18,6 @@ def csvtolibsvm(instrument_label):
     while line != "":
         vals = line.strip().split(",")
         fout.write(str(vals[-1]) + " ")
-        # print vals
-
-        # 	if(instru == str(vals[-1])):
-        # 		fout.write('+1'+' ')
-        # 	else:
-        # 		fout.write('-1'+' ')
-        # for i in range(2,len(vals)-1):
-        # 	fout.write(str(i+1-2)+':'+str(vals[i])+' ')
-        # fout.write('\n')
-        # line = fin.readline()
 
         for i in range(len(vals) - 1):
             fout.write(str(i + 1) + ":" + str(vals[i]) + " ")

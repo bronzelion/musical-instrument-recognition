@@ -1,7 +1,11 @@
+"""SVM Predictions from pre-computed model."""
 #!/usr/bin/python
-# SVM Predictions from pre-computed model
-from svmutil import *
+
+import os
 import operator
+
+from svmutil import svm_load_model, svm_read_problem, svm_predict
+
 from ..settings import BASE_DIR
 
 
@@ -17,18 +21,6 @@ def predict():
         count[i] = p_labels.count(i)
     predicted_inst = sorted(count.iteritems(), key=operator.itemgetter(1))
     predicted_inst.reverse()
-    print ("PRED", predicted_inst)
-    confidence = predicted_inst[0][1] / len(p_labels)
-    return (
-        inst[predicted_inst[0][0]]
-        + " with a confidence of "
-        + str(confidence * 100)
-        + "%"
-    )
-    # print 'Max occ' +str(max(count))
-    # print p_acc
-    # print p_vals
+    print ("Prediction Results (Class : Count)", predicted_inst)
+    return (inst[predicted_inst[0][0]])
 
-
-if __name__ == "__main__":
-    predict()

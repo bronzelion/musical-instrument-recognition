@@ -38,12 +38,12 @@ def extract_feature(name):
     # name = directory+'.csv'
     # file_list = os.listdir(directory)
     # f =open(out,'w')
-    print directory
+
     f = open("./testinput.csv", "w+")
     afp = AudioFileProcessor()
     # b=afp.setOutputFormat('csv','output',{'Precision':'8'})
     names = os.path.join(directory, str(name))
-    print names
+
     afp.processFile(engine, os.path.join(BASE_DIR, names))
 
     feats = engine.readAllOutputs()

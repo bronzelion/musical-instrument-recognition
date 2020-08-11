@@ -1,7 +1,7 @@
 from django.shortcuts import *
 from extract_features import *
 from csvtolibsvm import *
-from svm_prediction import *
+from svm_prediction import predict
 from django.http import *
 from models import *
 
@@ -15,28 +15,21 @@ from django.core.urlresolvers import reverse
 # Create your views here.
 def home(request):
     if request.method == "POST":
-        img = UploadForm(request.POST, request.FILES)
-        print ("POST!")
-        if img.is_valid():
-            img.save()
+        audio_clip = UploadForm(request.POST, request.FILES)
+        if audio_clip.is_valid():
+            audio_clip.save()
             uploaded_file_name = request.FILES["pic"]
-            print uploaded_file_name
+            print ("Recieved file {0}".format(uploaded_file_name))
             feats = extract_feature(uploaded_file_name)
             csvtolibsvm("1")
             inst = predict()
             print (inst)
             return HttpResponse(
-                "The Recognition system thinks it is <b>" + inst + "</b> "
+                "The Instrument Recognition system detects a presence of <b> {0} </b> ".format(inst)
             )
 
-            """output = "onLoad=\"javascript:alert('The language is ');"
-			print output+"\t valid form"
-			form = UploadForm()
-			return render_to_response('home.html', {'form': form,'output':output},context_instance=RequestContext(request))
-			#return HttpResponseRedirect(reverse('/imageupload'))"""
-
     else:
-        img = UploadForm()
+        audio_clip = UploadForm()
 
     images = Upload.objects.all()
-    return render(request, "home.html", {"form": img, "images": images})
+    return render(request, "home.html", {"form": audio_clip, "images": images})
