@@ -5,6 +5,7 @@ import sys
 import os
 from svmutil import *
 import itertools
+import tempfile
 
 from ..settings import BASE_DIR
 
@@ -32,14 +33,15 @@ def extract_feature(name):
     df.display()
     engine = Engine()
     engine.load(df)
-    directory = "uploads"
+    directory = os.getenv("MIR_UPLOAD_DIR", "uploads")
     # out=sys.argv[2]
     ins = "1"
     # name = directory+'.csv'
     # file_list = os.listdir(directory)
     # f =open(out,'w')
 
-    f = open("./testinput.csv", "w+")
+    # f = open("./testinput.csv", "w+")
+    f = tempfile.NamedTemporaryFile("w+", suffix="testinput.csv", delete=False)
     afp = AudioFileProcessor()
     # b=afp.setOutputFormat('csv','output',{'Precision':'8'})
     names = os.path.join(directory, str(name))
@@ -60,8 +62,4 @@ def extract_feature(name):
 
     f.close()
 
-    return zipped
-
-
-if __name__ == "__main__":
-    extract_feature()
+    return zipped, f.name

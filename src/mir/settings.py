@@ -63,7 +63,8 @@ WSGI_APPLICATION = "mir.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+        # "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+        "NAME": os.getenv("SQLITE_DB_PATH", os.path.join(BASE_DIR, "db.sqlite3")),
     }
 }
 

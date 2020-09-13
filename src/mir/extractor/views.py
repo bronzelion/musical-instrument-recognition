@@ -20,9 +20,9 @@ def home(request):
             audio_clip.save()
             uploaded_file_name = request.FILES["pic"]
             print ("Recieved file {0}".format(uploaded_file_name))
-            feats = extract_feature(uploaded_file_name)
-            csvtolibsvm("1")
-            inst = predict()
+            feats, features,  = extract_feature(uploaded_file_name)
+            input_vec = csvtolibsvm("1", features)
+            inst = predict(input_vec)
             print (inst)
             return HttpResponse(
                 "The Instrument Recognition system detects a presence of <b> {0} </b> ".format(inst)
