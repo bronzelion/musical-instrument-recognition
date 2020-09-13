@@ -1,0 +1,3 @@
+recursive-include src/staticfiles *
+recursive-include src/upload *
+recursive-include src/mir/extractor/templates *
