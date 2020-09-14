@@ -12,7 +12,7 @@ urlpatterns = patterns(
     # url(r'^$', 'mir.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
     url(r"^admin/", include(admin.site.urls)),
-    url(r"^upload/$", "mir.extractor.views.home", name="/imageupload"),
+    url(r"^$", "mir.extractor.views.home", name="/audioclip"),
 )
 
 urlpatterns += staticfiles_urlpatterns()

@@ -11,7 +11,7 @@ Currently the app only supports four instruments at present(limited to the train
 ### Usage
 The project comes with a `Dockerfile` which bases off the [Yaafe] library(Yet another audio feature extractor)
 
-The container kickstarts a basic Django app accesible at http://localhost:8000/upload
+The container kickstarts a basic Django app accesible at http://localhost:8000
 
 `docker build -t mir . ; docker run -it -p 8000:8000 mir`
 
