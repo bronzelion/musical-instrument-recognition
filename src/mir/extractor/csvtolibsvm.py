@@ -1,6 +1,3 @@
-#!/usr/bin/python
-
-# expecting label as the last column
 import sys
 import os
 import tempfile
@@ -9,13 +6,13 @@ from ..settings import BASE_DIR
 
 
 def csvtolibsvm(instrument_label, ifile):
-    fout = tempfile.NamedTemporaryFile("w+", suffix="testinput.libsvm", delete=False)
-    # ifile = os.path.join(BASE_DIR, ")
-    # out = os.path.join(BASE_DIR, "testinput.libsvm")
-    instru = instrument_label
-
+    fout = tempfile.NamedTemporaryFile(
+        "w+",
+        suffix="testinput.libsvm",
+        delete=False
+    )
     fin = open(ifile, "r")
-    # fout = open(out, "w+")
+
     line = fin.readline()
     while line != "":
         vals = line.strip().split(",")
