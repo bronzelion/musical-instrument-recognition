@@ -18,11 +18,13 @@ def home(request):
 
             _, features,  = extract_feature(uploaded_file_name)
             input_vec = csvtolibsvm("1", features)
-            inst = predict(input_vec)
-            print(inst)
+            instrument = predict(input_vec)
+            print(instrument)
             
             return HttpResponse(
-                "The Instrument Recognition system detects a presence of <b> {0} </b> ".format(inst)
+                "The Instrument Recognition system detects a presence of <b> {0} </b> ".format(
+                    instrument
+                )
             )
 
     else:
@@ -32,5 +34,8 @@ def home(request):
     return render(
         request,
         "home.html",
-        {"form": audio_clip, "images": images}
+        {
+            "form": audio_clip, 
+            "images": images
+        }
     )

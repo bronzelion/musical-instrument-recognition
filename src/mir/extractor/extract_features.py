@@ -3,18 +3,14 @@ import os
 import sys
 import tempfile
 
-from yaafelib import (
-    AudioFileProcessor,
-    Engine,
-    FeaturePlan
-)
+from yaafelib import AudioFileProcessor, Engine, FeaturePlan
 
 from ..settings import BASE_DIR
 
 
 def extract_feature(name):
     # 1 -flute 2-guitar 3- violin 4-piano
-    ins = "3" # Choose a dummy label
+    ins = "3"  # Choose a dummy label
     fp = FeaturePlan(sample_rate=44100, normalize=None, resample=True)
 
     fp.addFeature(

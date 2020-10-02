@@ -6,11 +6,7 @@ from ..settings import BASE_DIR
 
 
 def csvtolibsvm(instrument_label, ifile):
-    fout = tempfile.NamedTemporaryFile(
-        "w+",
-        suffix="testinput.libsvm",
-        delete=False
-    )
+    fout = tempfile.NamedTemporaryFile("w+", suffix="testinput.libsvm", delete=False)
     fin = open(ifile, "r")
 
     line = fin.readline()
