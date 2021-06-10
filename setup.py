@@ -7,7 +7,7 @@ setup(
     packages=find_packages("src/"),
     package_dir={"": "src/"},
     install_requires=[
-        "django==1.7",
+        "django==2.2.24",
 		"gunicorn==19.10.0"
     ],
     include_package_data=True,
